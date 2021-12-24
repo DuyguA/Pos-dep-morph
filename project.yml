@@ -3,9 +3,9 @@ vars:
   config: "default"
   lang: "tr"
   treebank: "Kenet"
-  train_name: "tr_kenet-ud-train"
-  dev_name: " tr_kenet-ud-dev"
-  test_name: "tr_kenet-ud-test"
+  train_name: "tr_penn-ud-train"
+  dev_name: " tr_penn-ud-dev"
+  test_name: "tr_penn-ud-test"
   gpu: -1
 
 # These are the directories that the project needs. The project CLI will make
