@@ -4,7 +4,7 @@ vars:
   lang: "tr"
   treebank: "FrameNet"
   train_name: "tr_framenet-ud-train"
-  dev_name: "tr_framnet-ud-dev"
+  dev_name: "tr_framenet-ud-dev"
   test_name: "tr_framenet-ud-test"
   gpu: -1
 
