@@ -2,10 +2,10 @@
 vars:
   config: "default"
   lang: "tr"
-  treebank: "Atis"
-  train_name: "tr_atis-ud-train"
-  dev_name: " tr_atis-ud-dev"
-  test_name: "tr_atis-ud-test"
+  treebank: "BOUN"
+  train_name: "tr_boun-ud-train"
+  dev_name: " tr_boun-ud-dev"
+  test_name: "tr_boun-ud-test"
   gpu: -1
 
 # These are the directories that the project needs. The project CLI will make
