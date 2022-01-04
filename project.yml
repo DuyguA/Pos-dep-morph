@@ -14,10 +14,17 @@ directories: ["corpus", "training", "metrics"]
 
 workflows:
   all:
+    - convert
     - train
     - evaluate
 
 commands:
+  - name: convert
+    help: "Convert data to spaCy format"
+    script:
+      - "python -m spacy convert datasets/UD-Turkish-Atis/tr_atis-ud-train.conllu  . --converter ner --n-sents 10"
+      - "python -m spacy convert datasets/UD-Turkish-Atis/tr_atis-ud-test.conllu  . --converter ner --n-sents 10"
+      - "python -m spacy convert datasets/UD-Turkish-Atis/tr_atis-ud-dev.conllu  . --converter ner --n-sents 10"
   - name: train
     help: "Train ${vars.treebank}"
     script:
