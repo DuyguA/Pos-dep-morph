@@ -10,7 +10,7 @@ vars:
 
 # These are the directories that the project needs. The project CLI will make
 # sure that they always exist.
-directories: ["corpus", "training", "metrics"]
+directories: ["datasets", "corpus", "training", "metrics"]
 
 workflows:
   all:
@@ -22,9 +22,18 @@ commands:
   - name: convert
     help: "Convert data to spaCy format"
     script:
-      - "python -m spacy convert datasets/UD-Turkish-Atis/tr_atis-ud-train.conllu  . --converter ner --n-sents 10"
-      - "python -m spacy convert datasets/UD-Turkish-Atis/tr_atis-ud-test.conllu  . --converter ner --n-sents 10"
-      - "python -m spacy convert datasets/UD-Turkish-Atis/tr_atis-ud-dev.conllu  . --converter ner --n-sents 10"
+      - "python -m spacy convert datasets/UD-Turkish-${vars.treebank}/${vars.train_name}.conllu corpus/${vars.treebank}  --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy convert datasets/UD-Turkish-${vars.treebank}/${vars.test_name}.conllu  corpus/${vars.treebank} --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy convert datasets/UD-Turkish-${vars.treebank}/${vars.dev_name}.conllu  corpus/${vars.treebank} --converter conllu --n-sents 10 --merge-subtokens"
+    deps:
+      - "datasets/UD-Turkish-${vars.treebank}/${vars.train_name}.conllu"
+      - "datasets/UD-Turkish-${vars.treebank}/${vars.test_name}.conll"
+      - "datasets/UD-Turkish-${vars.treebank}/${vars.dev_name}.conll"
+    outputs:
+      - "corpus/${vars.treebank}/${vars.train_name}.spacy"
+      - "corpus/${vars.treebank}/${vars.test_name}.spacy"
+      - "corpus/${vars.treebank}/${vars.dev_name}.spacy"
+
   - name: train
     help: "Train ${vars.treebank}"
     script:
